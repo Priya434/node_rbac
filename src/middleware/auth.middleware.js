@@ -1,14 +1,25 @@
 import jwt from 'jsonwebtoken';
+import User from '../models/user.model.js';
 
-const userAuth = (req, res, next) => {
+const userAuth = async (req, res, next) => {
 
     const token = req.cookies.authcookie
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+
         console.log("verifying");
+
         if (err) return res.sendStatus(403); //invalid token
 
-        console.log(decoded); //for correct token
+        const user = await User.findOne({ where: { username: decoded.username } });
+
+        req.user = {
+            username: user.username,
+            role: user.role,
+            supervisor: user.supervisor
+        }
+
+        console.log("decoded ", decoded); //for correct token
         next();
     });
 };
