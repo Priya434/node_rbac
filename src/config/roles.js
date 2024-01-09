@@ -1,6 +1,6 @@
 const Roles = {
     SuperAdmin: 'superadmin',
-    BranchManager: 'branchManager',
+    BranchManager: 'branchmanager',
     Salesperson: 'salesperson',
 }
 
