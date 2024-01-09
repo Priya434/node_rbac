@@ -4,6 +4,7 @@ import User from "./models/user.model.js"
 import bcrypt from "bcrypt"
 import Roles from "./config/roles.js"
 import loginRoute from "./routes/login.route.js"
+import logoutRoute from "./routes/logout.route.js"
 import userRoute from "./routes/user.route.js"
 import userAuth from "./middleware/auth.middleware.js"
 import cookieParser from "cookie-parser"
@@ -28,6 +29,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/login', loginRoute)
+app.use('/logout', logoutRoute)
 app.use('/user', userAuth, userRoute)
 
 // create superadmin
