@@ -5,6 +5,10 @@ import bcrypt from "bcrypt"
 const userLogin = async (req, res) => {
     const { username, password } = req.body;
 
+    if (!username || !password) {
+        return res.status(400).json("Please provide username and password");
+    }
+
     const userExists = await User.findOne({ where: { username: username } })
     if (!userExists) {
         return res.status(404).json({
