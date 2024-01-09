@@ -30,6 +30,7 @@ app.get('/', (req, res) => {
 app.use('/login', loginRoute)
 app.use('/user', userAuth, userRoute)
 
+// create superadmin
 app.post('/createsuperadmin', async (req, res) => {
     const { username, password } = req.body
     const hashPass = await bcrypt.hash(password, 10);
@@ -43,8 +44,6 @@ app.post('/createsuperadmin', async (req, res) => {
     res.json({
         message: superAdmin.toJSON()
     })
-
-    console.log(superAdmin.toJSON())
 })
 
 
