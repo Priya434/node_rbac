@@ -4,8 +4,8 @@ import User from "./models/user.model.js"
 import bcrypt from "bcrypt"
 import Roles from "./config/roles.js"
 import loginRoute from "./routes/login.route.js"
+import userRoute from "./routes/user.route.js"
 import userAuth from "./middleware/auth.middleware.js"
-import checkRole from "./middleware/rbac.middleware.js"
 import cookieParser from "cookie-parser"
 
 const PORT = 3000
@@ -28,17 +28,15 @@ app.get('/', (req, res) => {
 });
 
 app.use('/login', loginRoute)
+app.use('/user', userAuth, userRoute)
 
-app.get('/user', userAuth, checkRole(Roles.SuperAdmin), async (req, res) => {
-    return res.json(`welcome ${req.body.username}`);
-})
-
-app.get('/create', async (req, res) => {
-    const password = await bcrypt.hash("superadmin", 10);
+app.post('/createsuperadmin', async (req, res) => {
+    const { username, password } = req.body
+    const hashPass = await bcrypt.hash(password, 10);
 
     const superAdmin = await User.create({
-        username: "superadmin",
-        password: password,
+        username: username,
+        password: hashPass,
         role: Roles.SuperAdmin,
     })
 
@@ -47,15 +45,6 @@ app.get('/create', async (req, res) => {
     })
 
     console.log(superAdmin.toJSON())
-})
-
-app.get('/delete', async (req, res) => {
-    await User.destroy({
-        where: {
-            username: "sam"
-        }
-    })
-    res.send('deleted')
 })
 
 
