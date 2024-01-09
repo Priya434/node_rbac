@@ -15,6 +15,8 @@ rbac api developed in node.js
 - Sequelize
 - JWT
 
+[Api Documentation](https://documenter.getpostman.com/view/25128457/2s9YsKfBfV)
+
 ## Installation
 
 In your terminal perform the following commands
