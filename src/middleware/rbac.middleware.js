@@ -2,7 +2,7 @@ import User from "../models/user.model.js";
 
 
 const checkRole = (roles) => async (req, res, next) => {
-    const { username } = req.body;
+    const { username } = req.user;
 
     const user = await User.findOne({ where: { username: username } })
 
