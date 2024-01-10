@@ -37,5 +37,5 @@ DATABASE_HOST=localhost
 JWT_SECRET=your_secret_key
 
 <!-- start the server -->
-npm run dev
+npm start
 ```
