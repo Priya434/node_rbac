@@ -16,7 +16,7 @@ const userAuth = async (req, res, next) => {
         req.user = {
             username: user.username,
             role: user.role,
-            supervisor: user.supervisor
+            supervisorId: user.supervisorId
         }
 
         console.log("decoded ", decoded); //for correct token
