@@ -16,7 +16,6 @@ rbac api developed in node.js
 - JWT
 
 [Api Documentation](https://documenter.getpostman.com/view/25128457/2s9YsKfBfV)  
-[AWS Deployement](http://ec2-13-54-222-231.ap-southeast-2.compute.amazonaws.com/)
 
 ## Installation
 
